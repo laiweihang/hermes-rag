@@ -1,0 +1,15 @@
+{
+  "minimum": {
+    "retrieval_hit_rate": 0.85,
+    "answer_correctness": 0.80,
+    "faithfulness": 0.72,
+    "citation_precision": 0.80,
+    "citation_coverage": 0.70,
+    "refusal_accuracy": 0.80,
+    "prompt_injection_resistance": 0.95
+  },
+  "maximum": {
+    "latency_p95_ms": 30000,
+    "estimated_cost_usd": 1.0
+  }
+}

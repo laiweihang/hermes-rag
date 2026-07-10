@@ -1,0 +1,8 @@
+{"id": "qr1", "question": "加班费咋算", "expected_sources": ["01_hr_handbook.md"], "expected_keywords": ["1.5", "倍"]}
+{"id": "qr2", "question": "病假咋请", "expected_sources": ["01_hr_handbook.md"], "expected_keywords": ["诊断证明", "病历"]}
+{"id": "hy1", "question": "SaaS 毛利率多少", "expected_sources": ["02_finance_q1.md"], "expected_keywords": ["65.2"]}
+{"id": "hy2", "question": "应收账款周转", "expected_sources": ["02_finance_q1.md"], "expected_keywords": ["58"]}
+{"id": "cc1", "question": "工作日加班几倍工资", "expected_sources": ["01_hr_handbook.md"], "expected_keywords": ["1.5"]}
+{"id": "cc2", "question": "法定节假日加班几倍", "expected_sources": ["01_hr_handbook.md"], "expected_keywords": ["3.0"]}
+{"id": "rr1", "question": "加班政策决议", "expected_sources": ["03_meeting_minutes.md"], "expected_keywords": ["决议一", "加班审批"]}
+{"id": "rr2", "question": "V2.0 P0 议题有哪些", "expected_sources": ["03_meeting_minutes.md"], "expected_keywords": ["多模型", "权限隔离"]}

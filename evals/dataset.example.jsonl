@@ -1,0 +1,5 @@
+{"id": "q1", "question": "加班费按多少倍计算", "expected_sources": ["hr.md"], "expected_keywords": ["1.5", "倍"]}
+{"id": "q2", "question": "出差补贴每天多少钱", "expected_sources": ["hr.md"], "expected_keywords": ["200"]}
+{"id": "q3", "question": "年假有多少天", "expected_sources": ["hr.md"], "expected_keywords": ["10"]}
+{"id": "q4", "question": "调休应该在多少天内安排", "expected_sources": ["hr.md"], "expected_keywords": ["30"]}
+{"id": "q5", "question": "病假需要哪些材料", "expected_sources": ["hr.md"], "expected_keywords": ["证明"]}

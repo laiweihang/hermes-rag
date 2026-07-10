@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Data and uploads
+data/
+uploads/
+
+# Dev runtime logs
+logs/
+
+# IDE
+.idea/
+
+# Local models
+models/
+
+# macOS
+.DS_Store

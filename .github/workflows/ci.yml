@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e .
+      - run: python -m compileall -q -x '(^|/)(\.venv|frontend/node_modules)(/|$)' .
+      - run: pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+  live-rag-regression:
+    if: ${{ vars.RAG_EVAL_BASE_URL != '' }}
+    needs: backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+      - name: Run live RAG regression gate
+        env:
+          RAG_EVAL_USERNAME: ${{ secrets.RAG_EVAL_USERNAME }}
+          RAG_EVAL_PASSWORD: ${{ secrets.RAG_EVAL_PASSWORD }}
+        run: >-
+          python scripts/eval_rag.py
+          --base-url "${{ vars.RAG_EVAL_BASE_URL }}"
+          --input-price-per-million "${{ vars.RAG_INPUT_PRICE_PER_MILLION || '0' }}"
+          --output-price-per-million "${{ vars.RAG_OUTPUT_PRICE_PER_MILLION || '0' }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rag-evaluation-report
+          path: evals/results/
